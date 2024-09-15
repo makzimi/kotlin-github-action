@@ -1,0 +1,21 @@
+name: 'Test Action'
+description: 'This action serves as a template for building GitHub Actions using Kotlin/JS.'
+
+inputs:
+  owner:
+    description: 'The owner of the repository.'
+    required: false
+  repo:
+    description: 'The name of the repository.'
+    required: false
+  testInput:
+    description: 'One more test input parameter'
+    required: false
+
+outputs:
+  result:
+    description: 'Result of this action'
+
+runs:
+  using: 'node20'
+  main: 'dist/index.js'

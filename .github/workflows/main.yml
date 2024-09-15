@@ -1,0 +1,19 @@
+on: [push]
+
+jobs:
+  calc-lead-time-job:
+    runs-on: ubuntu-latest
+    name: Run Test Action
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Launch test action
+        uses: ./
+        id: action-id
+        with:
+          testInput: Hello, Test Action!
+        env:
+          GITHUB_TOKEN: "GITHUB_TOKEN"
+      - name: Print Output
+        run: |
+          echo "Result: ${{ steps.action-id.outputs.result }}"
