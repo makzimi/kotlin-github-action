@@ -4,10 +4,14 @@ This repository is a **template project** for those who want to write **GitHub A
 
 ## Getting Started
 
-To use this template, clone the repository and customize it for your action. The most important files to modify are:
 
-- **`./action.yml`**: This is your action definition. Update this file to define your custom GitHub Action's metadata, inputs, and outputs.
-- **`./.github/workflows/main.yml`**: This is the test workflow file. Use it to test your action with GitHub Actions.
+1. **Update `action.yml`:** Define your inputs, outputs, and metadata in the `./action.yml` file based on your action's requirements.
+
+2. **Customize `App.kt`:** Modify `App.kt` to parse inputs and outputs according to the structure defined in `action.yml`.
+
+3. **Write Your Logic:** Implement your action's custom logic in ```App.kt``` using the parsed inputs.
+
+4. **Test Your Action:** Run the test workflow in ```.github/workflows/main.yml``` to validate your changes.
 
 ### Example Usage 
 
@@ -30,7 +34,14 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
 
-## How to Build and Bundle the Action
+## NCC and Webpack: Executing as JS API
+
+**NCC** (Node.js Compiler) and **Webpack** are popular tools for bundling JavaScript code and dependencies into a single file. This is especially useful for Node.js applications, as it reduces the complexity of managing multiple modules and external libraries.
+
+Usually, **ncc** and **webpack** are used as command-line tools. You would typically install them and run commands like `npx ncc build` or `npx webpack`. However, in this project, I’ve reduced the setup work for you.
+
+Instead of manually installing **ncc** or **webpack** as CLI tools, we use their **JavaScript API** programmatically in Kotlin/JS. This allows you to bundle your action without installing and running the clients directly. All you need to do is run the provided tasks, and the tools will execute automatically:
+
 There are two options for building and bundling the Kotlin/JS GitHub Action:
 
 ### Option 1: Using ncc (Recommended by GitHub docs)
@@ -52,6 +63,8 @@ To build and bundle using webpack:
 ```
 
 ### Output
-After running the build process with either ncc or webpack, the bundled JavaScript file will be located in the ./dist/index.js directory. This is the file that will be executed by the GitHub Actions runner.
+After running the build process with either ncc or webpack, the bundled JavaScript file will be located in the ```./dist/index.js``` directory. This is the file that will be executed by the GitHub Actions runner.
 
+## License
 
+This project is licensed under the [Apache License 2.0](./LICENSE).
